@@ -47,7 +47,7 @@ def main(fasta_dir, reference_csv, output_file, fasta_code, target):
         print(f'Begin processing: {i} @ {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
 
         try:
-            ex_fasta = SeqIO.parse(os.path.join(fasta_dir, f'{i}{file_extensions}'), 'fasta')
+            ex_fasta = SeqIO.parse(os.path.join(fasta_dir, f'{i}{file_extensions[gg]}'), 'fasta')
 
             # Create a dictionary to hold all sequences
             data_dict = {seq.id: list(seq.seq) for seq in ex_fasta}
