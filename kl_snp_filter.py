@@ -21,7 +21,7 @@ def kl_divergence_dirichlet(alpha, beta):
     kl += np.sum((alpha - beta) * (psi(alpha) - psi(sum_alpha)))
     return kl
 
-def main(fasta_dir, reference_csv, output_file, target):
+def main(fasta_dir, reference_csv, output_file, fasta_code, target):
     # Read reference data
     code_ref = pd.read_csv(reference_csv)
 
@@ -53,8 +53,8 @@ def main(fasta_dir, reference_csv, output_file, target):
 
             # Convert the dictionary to a dataframe
             ex_df = pd.DataFrame.from_dict(data_dict, orient='index')
-            merged_df = ex_df.merge(code_ref[['labcode', 'y_']], left_index=True, right_on='labcode', how='left')
-            merged_df = merged_df[~pd.isna(merged_df['y_'])].drop_duplicates('labcode')
+            merged_df = ex_df.merge(code_ref[[fasta_code, 'y_']], left_index=True, right_on=fasta_code, how='left')
+            merged_df = merged_df[~pd.isna(merged_df['y_'])].drop_duplicates(fasta_code)
             ex_df = merged_df.rename(columns={'y_': 'y_pred'})
 
             kl_div = np.zeros(len(ex_df.columns) - 2)
@@ -92,7 +92,8 @@ if __name__ == "__main__":
     parser.add_argument('fasta_dir', type=str, help='Directory containing fasta files')
     parser.add_argument('reference_csv', type=str, help='CSV file with labcodes and prediction y values')
     parser.add_argument('output_file', type=str, help='Output file path')
+    parser.add_argument('fasta_code', type=str, help='fasta file link column')
     parser.add_argument('target', type=str, help='target column')
 
     args = parser.parse_args()
-    main(args.fasta_dir, args.reference_csv, args.output_file, args.target)
+    main(args.fasta_dir, args.reference_csv, args.output_file, args.fasta_code, args.target)
