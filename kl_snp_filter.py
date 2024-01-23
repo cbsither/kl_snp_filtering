@@ -31,6 +31,7 @@ def main(fasta_dir, reference_csv, output_file, fasta_code, target):
 
     # Get fasta files
     fasta_files = [f.split('.')[0] for f in os.listdir(fasta_dir) if f.endswith('.fasta')]
+    file_extensions = ['.' + '.'.join(filename.split('.')[1:]) for filename in os.listdir(fasta_dir)]
     fasta_files = list(set(fasta_files))
 
     nuc_key = {'A': 0, 'T': 1, 'G': 2, 'C': 3, '-': 4, 'N': 5}
@@ -46,7 +47,7 @@ def main(fasta_dir, reference_csv, output_file, fasta_code, target):
         print(f'Begin processing: {i} @ {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
 
         try:
-            ex_fasta = SeqIO.parse(os.path.join(fasta_dir, f'{i}.ntogap.nt.fasta'), 'fasta')
+            ex_fasta = SeqIO.parse(os.path.join(fasta_dir, f'{i}{file_extensions}'), 'fasta')
 
             # Create a dictionary to hold all sequences
             data_dict = {seq.id: list(seq.seq) for seq in ex_fasta}
