@@ -22,7 +22,7 @@ To use this script, you need to have a directory containing FASTA files, a refer
 
 Run the script from the command line as follows:
 ```bash
-python [script_name].py <fasta_dir> <reference_csv> <output_file> <target>
+python [script_name].py <fasta_dir> <reference_csv> <output_file> <fasta_code> <target>
 ```
 Replace `[script_name]` with the name of the script file.
 
@@ -45,7 +45,7 @@ A 'target' column:
 
 ### Example
 ```bash
-python script.py /path/to/fasta/dir reference_data.csv output_results.csv target_column
+python script.py /path/to/fasta/dir reference_data.csv output_results.csv fasta_link_column target_column
 ```
 
 ## Output
