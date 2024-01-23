@@ -30,7 +30,18 @@ Replace `[script_name]` with the name of the script file.
 - `fasta_dir`: Directory containing FASTA files.
 - `reference_csv`: CSV file with labcodes and prediction y values.
 - `output_file`: Path where the output CSV file will be saved.
+- `fasta_code`: Link column containing the name of the fasta sequence in the .fasta files
 - `target`: Target column in the reference CSV file.
+
+### Reference CSV Layout
+
+The reference CSV should contain at minimum the following:
+
+A 'fasta_code' column:
+  -This column is verbatim the name of the fasta sequence in the .fasta files
+
+A 'target' column:
+  -This column contains 1 (target) and 0 (non-target) labels identifying whether the fasta sequence is your target or non-target
 
 ### Example
 ```bash
