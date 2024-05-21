@@ -1,7 +1,7 @@
 # Python Script for KL Divergence Computation from Fasta Files
 
 ## Description
-This script processes a directory of FASTA files to compute the Kullback-Leibler (KL) divergence between two Dirichlet distributions for each site in the sequence data. It merges the sequence data with reference data from a CSV file, performs computations, and saves the results to a specified output file.
+This script processes a directory of FASTA files to compute the Kullback-Leibler (KL) divergence between two Dirichlet distributions for each site in a sequence alignment. It merges the alignment with reference data from a CSV file, performs computations, and saves the results to a specified output file.
 
 ## Dependencies
 To run this script, the following Python libraries are required:
